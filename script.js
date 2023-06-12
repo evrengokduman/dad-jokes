@@ -4,17 +4,30 @@ const jokeBtn = document.getElementById('jokeBtn')
 
 jokeBtn.addEventListener('click', generateJoke)
 
-generateJoke() // to generate a joke when the page loads
+// generateJoke() // to generate a joke when the page loads
 
-function generateJoke() {
+// function generateJoke() {
+//   const config = {
+//     headers: {
+//       'Accept': 'application/json',
+//     },
+//   }
+//   fetch('https://icanhazdadjoke.com', config)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       jokeElement.innerHTML = data.joke
+//     })
+// }
+
+// Async Await
+async function generateJoke() {
   const config = {
     headers: {
       'Accept': 'application/json',
     },
   }
-  fetch('https://icanhazdadjoke.com', config)
-    .then((res) => res.json())
-    .then((data) => {
-      jokeElement.innerHTML = data.joke
-    })
+  const res = await fetch('https://icanhazdadjoke.com', config)
+
+  const data = await res.json()
+  jokeElement.innerHTML = data.joke
 }
